@@ -4,7 +4,7 @@ import { CartContext } from "../context";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
-const stripePromise = loadStripe("YOUR_PUBLISHABLE_KEY");
+const stripePromise = loadStripe("pk_test_51NCY60F7NI6BrjJeVBaEFGLjjQKJBX8zB0VUZuG9QiCK0C7qK23VUei66uDB9CH6q0OZuVsSGvbLiRlxi0tuTRmS00jeEGyBHB");
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
@@ -14,7 +14,7 @@ export default function Cart() {
 
     // Make a request to your server to create a checkout session
     try {
-      const response = await axios.post("http://localhost:3000/create-checkout-session", cartItems, {
+      const response = await axios.post("/create-checkout-session", cartItems, {
         headers: {
           "Content-Type": "application/json",
         },
