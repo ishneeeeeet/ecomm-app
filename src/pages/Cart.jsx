@@ -8,6 +8,17 @@ const stripePromise = loadStripe("pk_test_51NCY60F7NI6BrjJeVBaEFGLjjQKJBX8zB0VUZ
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
+  
+ const totalAmount = () => {
+    
+let total = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      total = total + cartItems[i].price;
+    }
+
+    return total;
+  };
+  
 
   const handleCheckout = async () => {
     const stripe = await stripePromise;
@@ -92,7 +103,7 @@ export default function Cart() {
       <div className="space-y-1 text-right">
         <p>
           Total amount:
-          <span className="font-semibold"> ₹48,967</span>
+          <span className="font-semibold">{totalAmount()}</span>
         </p>
       </div>
       <div className="flex justify-end space-x-4">
